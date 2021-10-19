@@ -37,5 +37,5 @@ Route::post('student_submit',[StudentController::class,'store']);
 Route::get('student',[StudentController::class,'show']);
 Route::get('student/{id}',[StudentController::class,'destroy']);
 Route::get('st_edit/{id}',[StudentController::class,'edit']);
-Route::post('st_edit/{id}',[StudentController::class,'update'])->name('update');
+Route::post('st_edit',[StudentController::class,'update'])->name('update');
 Route::post('student/fetch_data',[StudentController::class,'fetch_data'])->name('pagination.fetch');

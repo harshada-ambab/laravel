@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\student;
 use Illuminate\Http\Request;
-use App\Services\Crudrepo;
+use App\Models\student;
+use App\Services\Crudrepoapi;
 use DB;
 
-class StudentController extends Controller
+class ApiController extends Controller
 {
-
-    public function __construct(Crudrepo $crudRepo){
-        $this->crudRepo = $crudRepo;
+    public function __construct(Crudrepoapi $crudRepoapi){
+        $this->crudRepoapi = $crudRepoapi;
     }
     /**
      * Display a listing of the resource.
@@ -31,7 +30,7 @@ class StudentController extends Controller
     public function create()
     {
         
-        return $this->crudRepo->create();
+        return $this->crudRepoapi->create();
         //return view('student_create');
     }
 
@@ -43,12 +42,12 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->crudRepo->store($request);
+        return $this->crudRepoapi->store($request);
         
     }
     public function fetch_data(Request $request, student $student){
 
-        return $this->crudRepo->fetch_data($request);
+        return $this->crudRepoapi->fetch_data($request);
         // return response($response);
     }
 
@@ -60,7 +59,7 @@ class StudentController extends Controller
      */
     public function show()
     { 
-        return $this->crudRepo->show();  
+        return $this->crudRepoapi->showall();  
  
     }
     
@@ -73,7 +72,7 @@ class StudentController extends Controller
      */
     public function edit(student $student,$id)
     {
-        return $this->crudRepo->edit($id); 
+        return $this->crudRepoapi->edit($id); 
         //return view('student_edit')->with('stArr',student::find($id));
     }
 
@@ -88,7 +87,7 @@ class StudentController extends Controller
     {
         // $data_id=$request->get('data-id');
         // $student=student::find( $data_id);
-        return $this->crudRepo->update($request); 
+        return $this->crudRepoapi->update($request); 
         // $res = student::find($request->id);
         // $res->name = $request->get('name');
         // $res->email = $request->get('email');
@@ -105,7 +104,7 @@ class StudentController extends Controller
      */
     public function destroy(student $student,$id)
     {
-        return $this->crudRepo->destroy($id);
+        return $this->crudRepoapi->destroy($id);
         // student::destroy(array('id',$id));
         // return redirect('student');
     }

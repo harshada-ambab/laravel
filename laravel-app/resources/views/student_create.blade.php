@@ -17,6 +17,44 @@
     }    
 </style>
 <body>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      <form method="post" action="{{route('update')}}">
+        @csrf
+        <input type="hidden" name="data-id" id="data-id">
+      <div class="form-group">
+        <label for="text">Name</label>
+        <input type="text" class="form-control"  name="name" id="name" aria-describedby="emailHelp" placeholder="Enter Name" required>  
+      </div> 
+      
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="email" class="form-control"  name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>  
+      </div> 
+
+      <div class="form-group">
+        <label for="number">Age</label>
+        <input type="number" class="form-control" name="age" id="age" aria-describedby="emailHelp" placeholder="Enter Age" required>  
+      </div> 
+
+      <button type="submit" name="submit" class="btn btn-primary">Update</button>
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
 <div class="container">
 
     <h2>Student Form</h2><br>
@@ -89,3 +127,5 @@ $(document).ready(function(){
 
 });
 </script> 
+
+

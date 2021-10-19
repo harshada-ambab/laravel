@@ -4,7 +4,7 @@ namespace app\Services;
 use App\Models\student;
 use Illuminate\Http\Request;
 
-class CrudRepo{
+class CrudRepoapi{
     public function __construct(student $crud){
         $this->crud = $crud;
     }
@@ -23,12 +23,12 @@ class CrudRepo{
     public function store($request)
     {
         $this->crud = new student;
-        $this->crud->name = $request->input('name'); 
-        $this->crud->email = $request->input('email'); 
-        $this->crud->age = $request->input('age'); 
+        $this->crud->name = $request->Name; 
+        $this->crud->email = $request->Email; 
+        $this->crud->age = $request->Age; 
         $this->crud->save();
         //$st->session()->flash('msg','Student Record Inserted Successfully');
-        return redirect('student');
+        //return redirect('student');
         
     }
     public function fetch_data($request){
@@ -65,9 +65,10 @@ class CrudRepo{
     {
         // return view('student_edit')->with('stArr',student::find($id));
         $student = student::find($id);
-        return response()->json([
-            'student'=> $student
-        ]);
+        return $student;
+        // return response()->json([
+        //     'student'=> $student
+        // ]);
     }
 
     /**
@@ -79,14 +80,13 @@ class CrudRepo{
      */
     public function update(Request $request)
     {   
-        $data_id=$request->get('data-id');
-        $this->crud=student::find( $data_id);
-        //$this->crud = student::find();
-        $this->crud->name = $request->get('name');
-        $this->crud->email = $request->get('email');
-        $this->crud->age = $request->get('age');
+
+        $this->crud=student::find($request->id);
+        $this->crud->Name = $request->Name; 
+        $this->crud->Email = $request->Email; 
+        $this->crud->Age = $request->Age; 
         $this->crud->save();
-        return redirect('student');
+        //return redirect('student');
     }
 
     /**
@@ -97,8 +97,10 @@ class CrudRepo{
      */
     public function destroy($id)
     {
-        student::destroy(array('id',$id));
-        return redirect('student');
+        //student::destroy(array('id',$id));
+        //return redirect('student');
+        $res = student::find($id);
+        return $res->delete();
     }
 }
 
